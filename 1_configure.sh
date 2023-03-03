@@ -16,6 +16,8 @@ docker exec web /bin/bash -c "echo 'export APACHE_HOME=/etc/httpd' >> /root/.bas
 
 docker exec web /bin/bash -c "echo 'export PATH=\$PATH:\$JAVA_HOME/bin:/root/shell' >> /root/.bashrc;"
 
+docker exec web /bin/bash -c "echo 'alias vi=vim' >> /root/.bashrc;"
+
 docker exec web /bin/bash -c "source /root/.bashrc;"
 
 ##########################################################################################################
