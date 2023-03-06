@@ -22,3 +22,4 @@ sed -i "/export APACHE_HOME=/ c\export APACHE_HOME=\"/etc/httpd\";" /root/.bashr
 
 
 source  /root/.bashrc;
+su - root;
