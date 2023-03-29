@@ -1,5 +1,5 @@
 #!/bin/bash
-#JBOSS_HOME="/root/jboss/wildfly-17.0.1.Final";
+JBOSS_HOME="/root/wildfly/wildfly-17.0.1.Final";
 
 
 case "$1" in
@@ -23,6 +23,10 @@ case "$1" in
      del)
              rm -rf $JBOSS_HOME/standalone/log/*;
              ;;
+    add-user)
+             echo "add-user";
+             $JBOSS_HOME/bin/add-user.sh
+             ;;             
     tail)
              tail -f $JBOSS_HOME/standalone/log/server.log;
              ;;
@@ -32,7 +36,8 @@ case "$1" in
       *)
             echo -e "Usage : jboss.sh [Option] \n";
             echo -e "Options: start | stop | restart | del \n";
-            echo -e "          tail | log  |  \n";
+            echo -e "         add-user  \n";
+            echo -e "         tail | log  |  \n";
             exit 1
             ;;
 esac

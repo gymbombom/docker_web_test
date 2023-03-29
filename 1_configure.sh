@@ -11,7 +11,7 @@ docker exec web /bin/bash -c "cd /root/util/tomcat-connectors-1.2.48-src/native 
 # bashrc
 
 docker exec web /bin/bash -c "echo 'export CATALINA_HOME=/root/tomcat/apache-tomcat-7.0.108' >> /root/.bashrc;"
-docker exec web /bin/bash -c "echo 'export JBOSS_HOME=/root/jboss/wildfly-17.0.1.Final' >> /root/.bashrc;"
+docker exec web /bin/bash -c "echo 'export JBOSS_HOME=/root/wildfly/wildfly-17.0.1.Final' >> /root/.bashrc;"
 docker exec web /bin/bash -c "echo 'export APACHE_HOME=/etc/httpd' >> /root/.bashrc;"
 
 docker exec web /bin/bash -c "echo 'export PATH=\$PATH:\$JAVA_HOME/bin:/root/shell' >> /root/.bashrc;"
@@ -19,6 +19,22 @@ docker exec web /bin/bash -c "echo 'export PATH=\$PATH:\$JAVA_HOME/bin:/root/she
 docker exec web /bin/bash -c "echo 'alias vi=vim' >> /root/.bashrc;"
 
 docker exec web /bin/bash -c "source /root/.bashrc;"
+
+
+##########################################################################################################
+# sshd
+docker exec web sed -i  "/#Port 22/ c\Port 22" /etc/ssh/sshd_config;
+docker exec web sed -i  "/PermitRootLogin/ c\PermitRootLogin yes" /etc/ssh/sshd_config;
+docker exec web sed -i  "/ListenAddress 0.0.0.0/ c\ListenAddress 0.0.0.0" /etc/ssh/sshd_config;
+
+
+docker exec web sed -i  "/StrictHostKeyChecking/ c\StrictHostKeyChecking no" /etc/ssh/ssh_config;
+
+docker exec web /bin/bash -c "ssh-keygen -t rsa -P '' -f /etc/ssh/ssh_host_rsa_key; \
+                               ssh-keygen -t ecdsa -P '' -f /etc/ssh/ssh_host_ecdsa_key; \
+                               ssh-keygen -t ed25519 -P '' -f /etc/ssh/ssh_host_ed25519_key;"
+
+docker exec web /bin/bash -c "/usr/sbin/sshd"
 
 ##########################################################################################################
 # httpd
@@ -69,3 +85,4 @@ docker cp  ./config/apache-tomcat-9.0.72/server.xml web:/root/tomcat/apache-tomc
 # shell
 
 docker cp  ./config/shell web:/root
+docker exec web /bin/bash -c "chmod -R 755 /root/shell"

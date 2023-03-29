@@ -5,6 +5,7 @@
 sed -i "/export JAVA_HOME=/ c\export JAVA_HOME=\"/root/jdk/jdk7.0.352\";" /root/.bashrc;
 #sed -i "/export JAVA_HOME=/ c\export JAVA_HOME=\"/root/jdk/jdk8.0.362\";" /root/.bashrc;
 #sed -i "/export JAVA_HOME=/ c\export JAVA_HOME=\"/root/jdk/jdk-9.0.4\";" /root/.bashrc;
+#sed -i "/export JAVA_HOME=/ c\export JAVA_HOME=\"/root/jdk/jdk-11.0.2\";" /root/.bashrc;
 
 
 #tomcat version

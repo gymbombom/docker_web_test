@@ -7,14 +7,21 @@
 $ docker build -t web:1 --platform linux/amd64 .
 ```
 
+#### docker compose
+
+```shell
+$ docker compose up -d
+```
+
+
 #### configure
 
 ```shell
 $ 1_configure.sh
 ```
 
-#### docker compose
+#### exec
 
 ```shell
-$ docker compose up -d
+$ docker exec -it web /bin/bash
 ```

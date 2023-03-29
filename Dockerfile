@@ -13,6 +13,8 @@ ARG JDK_8_ARCHIVE_FILE_NAME="zulu8.68.0.21-ca-jdk8.0.362-linux_x64.tar.gz"
 ARG JDK_8_FILE_NAME="jdk8.0.362"
 ARG JDK_9_ARCHIVE_FILE_NAME="openjdk-9.0.4_linux-x64_bin.tar.gz"
 ARG JDK_9_FILE_NAME="jdk-9.0.4"
+ARG JDK_11_ARCHIVE_FILE_NAME="openjdk-11.0.2_linux-x64_bin.tar.gz"
+ARG JDK_11_FILE_NAME="jdk-11.0.2"
 ARG TOMCAT_7_ARCHIVE_FILE_NAME="apache-tomcat-7.0.109.tar.gz"
 ARG TOMCAT_7_FILE_NAME="apache-tomcat-7.0.109"
 ARG TOMCAT_8_ARCHIVE_FILE_NAME="apache-tomcat-8.0.53.tar.gz"
@@ -40,10 +42,12 @@ RUN echo "root:root" | chpasswd; \
     yum install pcre-devel -y; \
     yum install openssh-server openssh-clients openssh-askpass -y; \
     yum install vim -y; \
+    yum install net-tools -y; \
     wget https://cdn.azul.com/zulu/bin/zulu6.22.0.3-jdk6.0.119-linux_x64.tar.gz; \
     wget https://cdn.azul.com/zulu/bin/zulu7.56.0.11-ca-jdk7.0.352-linux_x64.tar.gz; \
     wget https://cdn.azul.com/zulu/bin/zulu8.68.0.21-ca-jdk8.0.362-linux_x64.tar.gz; \
     wget https://download.java.net/java/GA/jdk9/9.0.4/binaries/openjdk-9.0.4_linux-x64_bin.tar.gz; \
+    wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz; \
     wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.109/bin/apache-tomcat-7.0.109.tar.gz; \
     wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.53/bin/apache-tomcat-8.0.53.tar.gz; \
     wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.86/bin/apache-tomcat-8.5.86.tar.gz; \
@@ -55,10 +59,12 @@ RUN echo "root:root" | chpasswd; \
     mkdir /root/jdk/${JDK_7_FILE_NAME} ; tar -xvf  ${JDK_7_ARCHIVE_FILE_NAME} -C /root/jdk/${JDK_7_FILE_NAME} --strip-components 1; \
     mkdir /root/jdk/${JDK_8_FILE_NAME} ; tar -xvf  ${JDK_8_ARCHIVE_FILE_NAME} -C /root/jdk/${JDK_8_FILE_NAME} --strip-components 1; \
     tar -xvf ${JDK_9_ARCHIVE_FILE_NAME}; mv -f ./${JDK_9_FILE_NAME} /root/jdk; \
+    tar -xvf ${JDK_11_ARCHIVE_FILE_NAME}; mv -f ./${JDK_11_FILE_NAME} /root/jdk; \
     rm -rf ${JDK_6_ARCHIVE_FILE_NAME}; \
     rm -rf ${JDK_7_ARCHIVE_FILE_NAME}; \
     rm -rf ${JDK_8_ARCHIVE_FILE_NAME}; \
     rm -rf ${JDK_9_ARCHIVE_FILE_NAME}; \
+    rm -rf ${JDK_11_ARCHIVE_FILE_NAME}; \
     mkdir ./tomcat; \
     tar -xvf ${TOMCAT_7_ARCHIVE_FILE_NAME}; mv -f ./${TOMCAT_7_FILE_NAME} /root/tomcat; \
     tar -xvf ${TOMCAT_8_ARCHIVE_FILE_NAME}; mv -f ./${TOMCAT_8_FILE_NAME} /root/tomcat; \
