@@ -12,3 +12,9 @@ $ docker build -t web:1 --platform linux/amd64 .
 ```shell
 $ 1_configure.sh
 ```
+
+#### docker compose
+
+```shell
+$ docker compose up -d
+```
