@@ -82,6 +82,14 @@ docker exec web /bin/bash -c "cp /root/tomcat/apache-tomcat-9.0.72/conf/server.x
 docker cp  ./config/apache-tomcat-9.0.72/server.xml web:/root/tomcat/apache-tomcat-9.0.72/conf
 
 ##########################################################################################################
+# wildfly
+
+# 원본파일 복사
+docker exec web /bin/bash -c "cp /root/wildfly/wildfly-17.0.1.Final/standalone/configuration/standalone.xml /root/wildfly/wildfly-17.0.1.Final/standalone/configuration/standalone.xml_ori"
+
+docker cp  ./config/wildfly/standalone.xml web:/root/wildfly/wildfly-17.0.1.Final/standalone/configuration
+
+##########################################################################################################
 # shell
 
 docker cp  ./config/shell web:/root

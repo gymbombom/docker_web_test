@@ -25,3 +25,6 @@ $ 1_configure.sh
 ```shell
 $ docker exec -it web /bin/bash
 ```
+
+#### wildfly 관리콘솔 접속주소 
+http://127.0.0.1:9990/console/index.html
